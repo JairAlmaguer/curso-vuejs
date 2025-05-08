@@ -5,7 +5,7 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <header>
-    <img alt="pokemon logo" class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1024px-International_Pok%C3%A9mon_logo.svg.png" width="125" height="125" />
+    <img alt="pokemon logo" class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1024px-International_Pok%C3%A9mon_logo.svg.png" width="80" height="80" />
 
     <div class="wrapper">
       <nav>
@@ -27,8 +27,6 @@ header {
 
 .logo {
   object-fit: contain;
-  width: 80px;
-  height: 80px;
 }
 
 nav {
