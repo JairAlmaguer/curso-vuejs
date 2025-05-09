@@ -3,29 +3,18 @@
     import { useRoute, useRouter } from 'vue-router';
     import { ref } from 'vue';
     import PokeCard from '../components/PokeCard.vue';
+    import { useGetData } from '@/composables/getData'
 
+    const { getData, data, loading, error } = useGetData();
     const route = useRoute();
     const router = useRouter();
-    const poke = ref();
-
+        
     const back = () => {
         router.push('/pokemons')
     }
     
-    const getData = async () => {
-        try{
-            const {data} = await axios.get(`https://pokeapi.co/api/v2/pokemon/${route.params.name}`);
-            console.log(data);
-            poke.value = data;
-        }catch(e){
-            poke.name = "Pokemon doesn't exist"
-            console.log('no existe')
-            console.log(poke.name)
-            console.log(e)
-        }
-    }
-
-    getData()
+    getData(`https://pokeapi.co/api/v2/pokemon/${route.params.name}`);
+    console.log(data)
 </script>
 
 
@@ -34,13 +23,15 @@
         <button @click="back">Back</button>
     </div>
 
+    <p v-if="error">{{ error }}</p>
+
     <div class="main">
 
         <PokeCard
-        :name="poke?.name ? poke.name : 'Pokemon Does Not Exist'"
-        :image="poke?.sprites.front_default"
-        :weight="poke?.weight"
-        :types="poke?.types"
+        :name="data?.name ? data.name : loading ? 'Loading...' : 'Pokemon Does Not Exist'"
+        :image="data?.sprites.front_default"
+        :weight="data?.weight"
+        :types="data?.types"
         />
 
     </div>
