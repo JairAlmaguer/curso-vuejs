@@ -2,26 +2,17 @@
     import axios from 'axios';
     import { ref } from 'vue';
     import { RouterLink } from 'vue-router';
+    import { useGetData } from '@/composables/getData'
 
-    const pokemons = ref([])
+    const { getData, data } = useGetData();
 
-    const getData = async () => {
-        try{
-            const { data } = await axios.get('https://pokeapi.co/api/v2/pokemon');
-            console.log(data.results)
-            pokemons.value = data.results;
-        }catch(e){
-            console.log(e)
-        }
-    }
-
-    getData()
+    getData('https://pokeapi.co/api/v2/pokemon');
 
 </script>
 
 <template>
     <ul>
-        <li v-for="poke in pokemons">
+        <li v-if="data" v-for="poke in data.results">
             <RouterLink :to="`/pokemons/${poke.name}`">{{ poke.name }}</RouterLink>
         </li>
     </ul>
