@@ -6,7 +6,6 @@
 
     const route = useRoute();
     const router = useRouter();
-    const name = route.params.name.toUpperCase();
     const poke = ref();
 
     const back = () => {
@@ -19,6 +18,9 @@
             console.log(data);
             poke.value = data;
         }catch(e){
+            poke.name = "Pokemon doesn't exist"
+            console.log('no existe')
+            console.log(poke.name)
             console.log(e)
         }
     }
@@ -35,10 +37,10 @@
     <div class="main">
 
         <PokeCard
-        :name="poke.name"
-        :image="poke.sprites.front_default"
-        :weight="poke.weight"
-        :types="poke.types"
+        :name="poke?.name ? poke.name : 'Pokemon Does Not Exist'"
+        :image="poke?.sprites.front_default"
+        :weight="poke?.weight"
+        :types="poke?.types"
         />
 
     </div>

@@ -13,9 +13,9 @@
 
     <div class="container">
         <h2>{{ name.toUpperCase() }}</h2>
-        <img :src="image" :alt="name + ' image'" width="250" height="250">
-        <p> weigth: {{ weight }}</p>
-        <div class="types">
+        <img v-if="image" :src="image" :alt="name + ' image'" width="250" height="250">
+        <p v-if="image"> weigth: {{ weight }}</p>
+        <div v-if="image" class="types">
             <span>Type: </span>
             <span v-for="type of types">
                 - {{type.type.name}}
