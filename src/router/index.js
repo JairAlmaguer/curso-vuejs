@@ -10,11 +10,6 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('../views/AboutView.vue'),
-    },
-    {
       path: '/pokemons',
       name: 'pokemons',
       component:() => import('../views/PokemonsView.vue') 
@@ -23,6 +18,11 @@ const router = createRouter({
       path: '/pokemons/:name',
       name: 'poke',
       component:() => import('../views/PokeView.vue') 
+    },
+    {
+      path: '/favorites',
+      name: 'favorites',
+      component:() => import('../views/FavoritesView.vue') 
     },
     {
       path: '/:pathMatch(.*)*',
