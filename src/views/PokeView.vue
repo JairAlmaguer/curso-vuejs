@@ -5,7 +5,7 @@
     import PokeCard from '../components/PokeCard.vue';
     import { useGetData } from '@/composables/getData'
 
-    const { getData, data } = useGetData();
+    const { getData, data, loading } = useGetData();
     const route = useRoute();
     const router = useRouter();
         
@@ -26,7 +26,7 @@
     <div class="main">
 
         <PokeCard
-        :name="data?.name ? data.name : 'Pokemon Does Not Exist'"
+        :name="data?.name ? data.name : loading ? 'Loading...' : 'Pokemon Does Not Exist'"
         :image="data?.sprites.front_default"
         :weight="data?.weight"
         :types="data?.types"
