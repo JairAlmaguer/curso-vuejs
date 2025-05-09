@@ -12,9 +12,30 @@
 
 <template>
     <p v-if="error">{{ error }}</p>
+    <div class="buttonsContainer">
+        <button v-if="data.previous" @click="getData(data.previous)">Previous</button>
+        <button v-if="data.next" @click="getData(data.next)">Next</button>
+    </div>
     <ul>
         <li v-if="data" v-for="poke in data.results">
             <RouterLink :to="`/pokemons/${poke.name}`">{{ poke.name }}</RouterLink>
         </li>
     </ul>
 </template>
+
+<style>
+    button{
+        width: 80px;
+        height: 30px;
+        border-color: white;
+        border-radius:4px;
+        background-color: transparent;
+        color: white;
+        margin: 1rem;
+    }
+
+    .buttonsContainer {
+        display: inline;
+    }
+
+</style>
