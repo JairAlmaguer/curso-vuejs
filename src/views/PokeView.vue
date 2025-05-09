@@ -5,7 +5,7 @@
     import PokeCard from '../components/PokeCard.vue';
     import { useGetData } from '@/composables/getData'
 
-    const { getData, data, loading } = useGetData();
+    const { getData, data, loading, error } = useGetData();
     const route = useRoute();
     const router = useRouter();
         
@@ -22,6 +22,8 @@
     <div class="nav">
         <button @click="back">Back</button>
     </div>
+
+    <p v-if="error">{{ error }}</p>
 
     <div class="main">
 
