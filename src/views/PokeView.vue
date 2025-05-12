@@ -3,12 +3,16 @@
     import { useRoute, useRouter } from 'vue-router';
     import { ref } from 'vue';
     import PokeCard from '../components/PokeCard.vue';
-    import { useGetData } from '@/composables/getData'
+    import { useGetData } from '@/composables/getData';
+    import { useFavoritesStore } from '@/store/favorites';
 
-    const { getData, data, loading, error } = useGetData();
     const route = useRoute();
     const router = useRouter();
-        
+    const useFavorites = useFavoritesStore();
+    
+    const { getData, data, loading, error } = useGetData();
+    const { add, findPoke } = useFavorites;
+    
     const back = () => {
         router.push('/pokemons')
     }
@@ -34,6 +38,10 @@
         :types="data?.types"
         />
 
+        <div style="width: 100%; justify-content: end; display: flex; padding: 1rem; ">
+            <button :disabled="findPoke(data.name)" v-if="data" style="width: 150px; margin-right: 2rem;" @click="add(data)"> Add To Favorites </button>
+        </div>
+
     </div>
 </template>
 
@@ -53,8 +61,15 @@
         border-radius:4px;
         background-color: transparent;
         color: white;
-        
+        cursor: pointer;
     }
+
+    button:disabled {
+    background-color: gray;
+    color: white;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
 
     h1{
         font-weight: 600;
