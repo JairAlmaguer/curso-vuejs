@@ -13,8 +13,8 @@
 <template>
     <p v-if="error">{{ error }}</p>
     <div class="buttonsContainer">
-        <button :disabled="!data.previous" @click="getData(data.previous)">Previous</button>
-        <button :disabled="!data.next" @click="getData(data.next)">Next</button>
+        <button :disabled="!data?.previous" @click="getData(data.previous)">Previous</button>
+        <button :disabled="!data?.next" @click="getData(data.next)">Next</button>
     </div>
     <ul>
         <li v-if="data" v-for="poke in data.results">

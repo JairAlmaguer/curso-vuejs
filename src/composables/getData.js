@@ -13,6 +13,7 @@ export const useGetData = () =>{
         try{
             const res = await axios.get(url);
             data.value = res.data;
+            
         }catch(e){
             console.log(e)
             error.value = 'Server error'
